@@ -1,0 +1,21 @@
+version: "3"
+services:
+  directus:
+    image: directus/directus:11.4
+    ports:
+      - 8055:8055
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/database:/directus/database:rw
+      - ${WEBAPP_STORAGE_HOME}/uploads:/directus/uploads:rw
+    environment:
+      KEY: ${{ secrets.DIRECTUS_KEY }}
+      SECRET: ${{ secrets.DIRECTUS_SECRET }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      DB_CLIENT: "pg"
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PORT: 5432
+      DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      DB_USER: ${{ secrets.DB_USER}}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      WEBSOCKETS_ENABLED: true
